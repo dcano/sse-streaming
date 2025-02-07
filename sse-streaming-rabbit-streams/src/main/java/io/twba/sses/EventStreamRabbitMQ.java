@@ -1,0 +1,18 @@
+package io.twba.sses;
+
+import org.reactivestreams.Publisher;
+
+class EventStreamRabbitMQ implements EventStream {
+
+
+
+    @Override
+    public void append(StoredEvent storedEvent) {
+
+    }
+
+    @Override
+    public Publisher<StreamedEvent> retrieve(String dataDomain, String consumerId, long partition, long offset) {
+        return null;
+    }
+}
