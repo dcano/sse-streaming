@@ -43,6 +43,9 @@
 		<maven.compiler.target>21</maven.compiler.target>
 		<cloudevents.version>3.0.0</cloudevents.version>
 		<rabbitmq-stream-client.version>0.16.0</rabbitmq-stream-client.version>
+		<amazon-kinesis-producer.version>0.15.2</amazon-kinesis-producer.version>
+		<amazon-kinesis-client.version>3.0.1</amazon-kinesis-client.version>
+		<aws.version>2.29.45</aws.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -71,8 +74,26 @@
 				<artifactId>stream-client</artifactId>
 				<version>${rabbit-stream-client.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>amazon-kinesis-producer</artifactId>
+				<version>${amazon-kinesis-producer.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>software.amazon.kinesis</groupId>
+				<artifactId>amazon-kinesis-client</artifactId>
+				<version>${amazon-kinesis-client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>software.amazon.awssdk</groupId>
+				<artifactId>bom</artifactId>
+				<version>${aws.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 
 	<build>
 		<pluginManagement>
