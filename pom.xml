@@ -29,6 +29,8 @@
 		<module>sse-streaming-kinesis</module>
 		<module>sse-streaming-rabbit-streams</module>
 		<module>sse-streaming-runtime</module>
+		<module>sse-streaming-shared</module>
+		<module>sse-streaming-faker</module>
 	</modules>
 	<scm>
 		<connection/>
@@ -56,7 +58,22 @@
 			</dependency>
 			<dependency>
 				<groupId>io.twba</groupId>
+				<artifactId>sse-streaming-application</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.twba</groupId>
 				<artifactId>sse-streaming-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.twba</groupId>
+				<artifactId>sse-streaming-shared</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.twba</groupId>
+				<artifactId>sse-streaming-faker</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sse-streaming-application</artifactId>
+    <artifactId>sse-streaming-shared</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -19,20 +19,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.twba</groupId>
-            <artifactId>sse-streaming-shared</artifactId>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.twba</groupId>
-            <artifactId>sse-streaming-domain</artifactId>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-core</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-core</artifactId>
         </dependency>
     </dependencies>
 

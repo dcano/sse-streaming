@@ -35,7 +35,7 @@ class EventStreamKinesisSync implements EventStream {
     }
 
     private Flux<StreamedEvent> pollKinesisStream(long n) {
-        return Flux.just(new StreamedEvent(new StoredEvent(UUID.randomUUID(), new EventPayload("payload", "eventtype-" + n), Instant.now(), new DataDomain("dataDomainTest"), "pk", UUID.randomUUID().toString()), n));
+        return Flux.just(new StreamedEvent(UUID.randomUUID(), new EventPayload("payload", "eventtype-" + n, UUID.randomUUID().toString()), Instant.now(), new DataDomain("dataDomainTest"), new ProducerId("producerId"),  n));
     }
 
     private Stream<String> getShardIterators(String dataDomain) {

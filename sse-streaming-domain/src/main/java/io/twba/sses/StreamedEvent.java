@@ -1,4 +1,7 @@
 package io.twba.sses;
 
-record StreamedEvent(StoredEvent event, long offset)  {
+import java.time.Instant;
+import java.util.UUID;
+
+record StreamedEvent(UUID id, EventPayload payload, Instant creationTime, DataDomain dataDomain, ProducerId producerId, long offset)  {
 }

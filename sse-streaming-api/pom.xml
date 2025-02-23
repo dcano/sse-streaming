@@ -19,8 +19,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.twba</groupId>
+            <artifactId>sse-streaming-application</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>kinesis</artifactId>
         </dependency>
     </dependencies>
 

@@ -10,5 +10,6 @@ record StoredEvent(@NotNull UUID id,
                    @NotNull Instant creationTime,
                    @NotNull DataDomain dataDomain,
                    String partitionKey,
+                   @NotNull ProducerId producerId,
                    @NotNull String correlationId) {
 }
