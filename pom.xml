@@ -77,6 +77,11 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>io.twba</groupId>
+				<artifactId>sse-streaming-kinesis</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>jakarta.inject</groupId>
 				<artifactId>jakarta.inject-api</artifactId>
 				<version>${jakarta.inject.version}</version>

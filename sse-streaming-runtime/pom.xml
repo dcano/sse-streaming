@@ -20,6 +20,18 @@
     <dependencies>
         <dependency>
             <groupId>io.twba</groupId>
+            <artifactId>sse-streaming-application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.twba</groupId>
+            <artifactId>sse-streaming-faker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.twba</groupId>
+            <artifactId>sse-streaming-kinesis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.twba</groupId>
             <artifactId>sse-streaming-api</artifactId>
         </dependency>
         <dependency>

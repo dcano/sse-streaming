@@ -24,9 +24,8 @@ public class SseController {
         this.queryBus = queryBus;
     }
 
-    @GetMapping(value = "/{dataDomain}/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<ServerSentEvent<StreamedCloudEvent>> streamEvents(@PathVariable String dataDomain, @RequestParam String consumerApp) {
-
+    @GetMapping(value = "/{dataDomain}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<ServerSentEvent<StreamedCloudEvent>> streamEvents(@RequestParam("consumer") String consumerApp, @PathVariable String dataDomain) {
         StreamAllEventsForDataDomainQuery query = new StreamAllEventsForDataDomainQuery(dataDomain, consumerApp);
         return Flux.from(queryBus.execute(query))
                 .map(streamedEvent -> ServerSentEvent.builder(streamedEvent).build())

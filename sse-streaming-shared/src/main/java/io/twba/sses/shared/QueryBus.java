@@ -5,17 +5,19 @@ import jakarta.inject.Named;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 @Named
 public class QueryBus {
 
-    private final Map<String, SseQueryHandler<Query>> handlersMap;
+    private final Map<String, SseQueryHandler> handlersMap;
 
     @Inject
-    public QueryBus(List<SseQueryHandler<Query>> handlers) {
-        handlersMap = Map.of();
+    public QueryBus(List<SseQueryHandler> handlers) {
+        handlersMap = new HashMap<>();
         handlers.forEach(handler -> this.handlersMap.put(handler.handles(), handler));
     }
 

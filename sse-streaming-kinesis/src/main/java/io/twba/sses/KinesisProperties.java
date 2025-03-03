@@ -6,5 +6,6 @@ import lombok.Data;
 public class KinesisProperties {
 
     private String streamNamePrefix;
+    private String awsRegion;
 
 }

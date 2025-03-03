@@ -2,7 +2,9 @@ package io.twba.sses;
 
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Sinks;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.kinesis.KinesisClient;
 import software.amazon.awssdk.services.kinesis.model.*;
 
@@ -15,11 +17,13 @@ class EventStreamKinesisSync implements EventStream {
 
     private final KinesisClient kinesisClient;
     private final KinesisProperties kinesisProperties;
+    private final Sinks.Many<StreamedEvent> sink = Sinks.many().multicast().onBackpressureBuffer();
 
     EventStreamKinesisSync(KinesisProperties kinesisProperties, AwsCredentialsProvider awsCredentialsProvider) {
         this.kinesisProperties = kinesisProperties;
         kinesisClient = KinesisClient.builder()
                 .credentialsProvider(awsCredentialsProvider)
+                .region(Region.EU_CENTRAL_1)
                 .build();
     }
 
@@ -35,6 +39,7 @@ class EventStreamKinesisSync implements EventStream {
     }
 
     private Flux<StreamedEvent> pollKinesisStream(long n) {
+
         return Flux.just(new StreamedEvent(UUID.randomUUID(), new EventPayload("payload", "eventtype-" + n, UUID.randomUUID().toString()), Instant.now(), new DataDomain("dataDomainTest"), new ProducerId("producerId"),  n));
     }
 
