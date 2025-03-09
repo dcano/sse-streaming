@@ -20,9 +20,9 @@ import java.util.stream.Stream;
 
 class EventStreamKinesisSync implements EventStream {
 
-    //arn:aws:kinesis:<AWS_REGION>:<AWS_ACCOUNT_ID>:stream/I<STREAM_NAME>
     private static final Logger LOG = LoggerFactory.getLogger(EventStreamKinesisSync.class);
-    private static final String KINESIS_ARN_TEMPLATE = "arn:aws:kinesis:%s:%s:stream/%s";
+    //private static final String KINESIS_ARN_TEMPLATE = "arn:aws:kinesis:%s:%s:stream/%s";
+    private static final String KINESIS_ARN_TEMPLATE = "arn:aws:kinesis:eu-central-1:677805878090:stream/test-domain";
     private final KinesisClient kinesisClient;
     private final AwsProperties awsProperties;
     private final Sinks.Many<StreamedEvent> sink = Sinks.many().multicast().onBackpressureBuffer();
@@ -42,6 +42,7 @@ class EventStreamKinesisSync implements EventStream {
 
     @Override
     public Publisher<StreamedEvent> retrieve(String dataDomain, String consumerId, long partition, long offset) {
+        LOG.info("Domain name {}", dataDomain);
         return Flux.interval(Duration.ofSeconds(1))
                 .flatMap(n ->pollKinesisStream(n, dataDomain));
     }
@@ -77,13 +78,14 @@ class EventStreamKinesisSync implements EventStream {
     }
 
     private Stream<String> getShardIterators(String dataDomain) {
-        ListShardsRequest listShardsRequest = ListShardsRequest.builder().streamName(streamNameOf(dataDomain)).build();
+        ListShardsRequest listShardsRequest = ListShardsRequest.builder().streamARN(streamNameOf(dataDomain)).build();
         ListShardsResponse listShardsResponse = kinesisClient.listShards(listShardsRequest);
 
         if (!listShardsResponse.shards().isEmpty()) {
             return listShardsResponse.shards().stream()
                     .map(shard -> GetShardIteratorRequest.builder()
-                            .streamName(streamNameOf(dataDomain))
+                            //.streamName(streamNameOf(dataDomain))
+                            .streamARN(streamNameOf(dataDomain))
                             .shardId(shard.shardId())
                             .shardIteratorType(ShardIteratorType.LATEST)
                             .build())

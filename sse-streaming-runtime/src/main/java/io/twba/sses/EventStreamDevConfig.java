@@ -22,7 +22,7 @@ public class EventStreamDevConfig {
     AwsCredentialsProvider basicCredentialsProvider(AwsProperties awsProperties) {
         return StaticCredentialsProvider.create(AwsBasicCredentials.create(awsProperties.getAccessKeyId(), awsProperties.getSecretAccessKey()));
     }
-    
+
     @ConfigurationProperties(prefix = "twba.aws")
     @Bean
     AwsProperties awsProperties() {
