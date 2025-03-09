@@ -14,21 +14,15 @@ import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 public class EventStreamDevConfig {
 
     @Bean
-    EventStream eventStream(@Autowired KinesisProperties kinesisProperties, @Autowired AwsCredentialsProvider awsCredentialsProvider) {
-        return new EventStreamKinesisSync(kinesisProperties, awsCredentialsProvider);
+    EventStream eventStream(@Autowired AwsProperties awsProperties, @Autowired AwsCredentialsProvider awsCredentialsProvider) {
+        return new EventStreamKinesisSync(awsCredentialsProvider, awsProperties);
     }
 
     @Bean
     AwsCredentialsProvider basicCredentialsProvider(AwsProperties awsProperties) {
         return StaticCredentialsProvider.create(AwsBasicCredentials.create(awsProperties.getAccessKeyId(), awsProperties.getSecretAccessKey()));
     }
-
-    @ConfigurationProperties(prefix = "twba.kinesis")
-    @Bean
-    KinesisProperties kinesisProperties() {
-        return new KinesisProperties();
-    }
-
+    
     @ConfigurationProperties(prefix = "twba.aws")
     @Bean
     AwsProperties awsProperties() {

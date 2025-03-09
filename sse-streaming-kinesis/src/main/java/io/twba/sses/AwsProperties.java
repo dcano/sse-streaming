@@ -7,5 +7,7 @@ public class AwsProperties {
 
     private String accessKeyId;
     private String secretAccessKey;
+    private String accountId;
+    private String region;
 
 }

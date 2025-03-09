@@ -5,6 +5,5 @@ twba:
   aws:
     access-key-id: ${AWS_ACCESS_KEY_ID}
     secret-access-key: ${SECRET_ACCESS_KEY}
-  kinesis:
-    stream-name-prefix: ${STREAM_PREFIX}
+    account-id: ${ACCOUNT_ID}
     aws-region: ${AWS_REGION}
